@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Choose your vehicle services, get an instant estimate, and send a booking request to AutoCare Garage.">
+  <title>Book a Service | AutoCare Garage</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body class="booking-page">
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="AutoCare Garage home"><span class="brand-mark">A</span><span>AutoCare<span class="brand-light"> Garage</span></span></a>
+    <nav aria-label="Main navigation"><a href="index.html">Home</a><a class="active" href="service.html">Book a service</a><a href="index.html#services">Our services</a></nav>
+    <a class="header-cta" href="service.html">Get an estimate <span aria-hidden="true">↗</span></a>
+  </header>
+  <main class="booking-main">
+    <div class="page-intro"><a class="back-link" href="index.html">← Back to home</a><span class="eyebrow">WE’RE HERE TO HELP</span><h1>Book your <span>service.</span></h1><p>Share a few details and choose what your vehicle needs. Your estimate updates as you go.</p></div>
+    <form id="serviceForm" action="process_service.php" method="post" novalidate>
+      <div class="form-layout">
+        <div class="form-main">
+          <section class="form-card">
+            <div class="form-section-title"><span class="step-number">01</span><div><h2>Your details</h2><p>How can we reach you about your booking?</p></div></div>
+            <div class="field-grid">
+              <div class="field"><label for="customer_name">Full name <span class="required">*</span></label><input type="text" id="customer_name" name="customer_name" autocomplete="name" placeholder="e.g. Jane Wanjiku" required><small class="field-error" id="customer_name_error"></small></div>
+              <div class="field"><label for="phone">Phone number <span class="required">*</span></label><input type="tel" id="phone" name="phone" inputmode="numeric" autocomplete="tel" placeholder="0712345678" maxlength="10" required><small class="field-hint">Enter 10 digits, with no spaces.</small><small class="field-error" id="phone_error"></small></div>
+              <div class="field full-width"><label for="email">Email address <span class="required">*</span></label><input type="email" id="email" name="email" autocomplete="email" placeholder="you@example.com" required><small class="field-error" id="email_error"></small></div>
+            </div>
+          </section>
+
+          <section class="form-card">
+            <div class="form-section-title"><span class="step-number">02</span><div><h2>Your vehicle</h2><p>Tell us a little about what you drive.</p></div></div>
+            <div class="field-grid">
+              <div class="field"><label for="registration">Registration number <span class="required">*</span></label><input type="text" id="registration" name="registration" placeholder="e.g. KDA 123A" maxlength="15" required><small class="field-error" id="registration_error"></small></div>
+              <div class="field"><label for="vehicle_type">Vehicle type <span class="required">*</span></label><select id="vehicle_type" name="vehicle_type" required><option value="">Select vehicle type</option><option>Saloon Car</option><option>SUV</option><option>Pickup</option><option>Van</option></select><small class="field-error" id="vehicle_type_error"></small></div>
+              <div class="field"><label for="vehicle_model">Vehicle model <span class="required">*</span></label><input type="text" id="vehicle_model" name="vehicle_model" placeholder="e.g. Toyota Corolla" required><small class="field-error" id="vehicle_model_error"></small></div>
+              <div class="field"><label for="year">Year of manufacture <span class="required">*</span></label><input type="number" id="year" name="year" inputmode="numeric" placeholder="e.g. 2018" min="1950" required><small class="field-hint">Between 1950 and the current year.</small><small class="field-error" id="year_error"></small></div>
+              <div class="field full-width"><label for="service_date">Preferred service date <span class="required">*</span></label><input type="date" id="service_date" name="service_date" required><small class="field-error" id="service_date_error"></small></div>
+            </div>
+            <div class="vehicle-note" id="vehicleNote" aria-live="polite"><span>✦</span><span>Select your vehicle type and we’ll tailor your booking notes.</span></div>
+            <div class="age-warning" id="ageWarning" hidden><span>⚠</span><span>Older vehicle? A Computer Diagnosis can help us identify issues before servicing.</span></div>
+          </section>
+
+          <section class="form-card" id="services">
+            <div class="form-section-title"><span class="step-number">03</span><div><h2>Choose your services</h2><p>Select all the services you’d like us to take care of.</p></div></div>
+            <div class="service-options" role="group" aria-label="Available vehicle services">
+              <label class="service-option"><input type="checkbox" name="services[]" value="oil_change" data-name="Engine Oil Change" data-price="2000"><span class="custom-check" aria-hidden="true"></span><span class="option-copy"><strong>Engine Oil Change</strong><small>Fresh oil for a healthier engine</small></span><span class="option-price">KSh 2,000</span></label>
+              <label class="service-option"><input type="checkbox" name="services[]" value="brake_inspection" data-name="Brake Inspection" data-price="3000"><span class="custom-check" aria-hidden="true"></span><span class="option-copy"><strong>Brake Inspection</strong><small>A closer look at your stopping power</small></span><span class="option-price">KSh 3,000</span></label>
+              <label class="service-option"><input type="checkbox" name="services[]" value="wheel_alignment" data-name="Wheel Alignment" data-price="3500"><span class="custom-check" aria-hidden="true"></span><span class="option-copy"><strong>Wheel Alignment</strong><small>For a smoother, straighter ride</small></span><span class="option-price">KSh 3,500</span></label>
+              <label class="service-option"><input type="checkbox" name="services[]" value="computer_diagnosis" data-name="Computer Diagnosis" data-price="2500"><span class="custom-check" aria-hidden="true"></span><span class="option-copy"><strong>Computer Diagnosis</strong><small>Find the cause of dashboard warnings</small></span><span class="option-price">KSh 2,500</span></label>
+              <label class="service-option featured-option"><input type="checkbox" name="services[]" value="full_service" data-name="Full Service" data-price="8000"><span class="custom-check" aria-hidden="true"></span><span class="option-copy"><strong>Full Service <span class="popular-tag">COMPLETE CARE</span></strong><small>Our comprehensive maintenance package</small></span><span class="option-price">KSh 8,000</span></label>
+            </div>
+            <small class="field-error services-error" id="services_error"></small>
+          </section>
+          <div class="form-submit-mobile"><button class="button button-primary submit-button" type="submit">Submit service request <span aria-hidden="true">→</span></button><p>We’ll confirm your booking details with you.</p></div>
+        </div>
+
+        <aside class="estimate-card" aria-label="Live service estimate">
+          <div class="estimate-top"><span class="estimate-icon">↗</span><span class="estimate-kicker">YOUR ESTIMATE</span></div>
+          <h2>Service summary</h2><p class="estimate-subtitle">A clear estimate, updated live.</p>
+          <div class="selected-list" id="selectedServices" aria-live="polite"><div class="empty-selection">Your selected services will appear here.</div></div>
+          <div class="estimate-divider"></div>
+          <div class="estimate-total"><span>Estimated total</span><strong id="estimatedTotal">KSh 0</strong></div>
+          <p class="estimate-disclaimer">Final costs may vary if additional work is needed. We’ll always check with you first.</p>
+          <div class="free-service-note" id="freeDiagnosisNote" hidden><span>✦</span><span>Computer Diagnosis is on us with Full Service.</span></div>
+          <button class="button button-primary submit-button desktop-submit" type="submit">Submit service request <span aria-hidden="true">→</span></button>
+          <p class="secure-note"><span>✓</span> No payment required to request a booking.</p>
+        </aside>
+      </div>
+    </form>
+  </main>
+  <footer class="site-footer"><a class="brand footer-brand" href="index.html"><span class="brand-mark">A</span><span>AutoCare<span class="brand-light"> Garage</span></span></a><span>Thoughtful vehicle care. Every mile.</span><span>© 2026 AutoCare Garage</span></footer>
+</body>
+</html>
